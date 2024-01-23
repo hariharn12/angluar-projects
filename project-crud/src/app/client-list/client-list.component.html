@@ -1,0 +1,36 @@
+<div class="container-fluid p-2">
+    <div class="col-12 d-flex">
+        <div class="col-6">
+            <h4>Client List</h4>
+        </div>
+        <div class="col-6">
+            <a class="text-decoration-none text-white btn btn-primary float-end"
+                routerLink="./add-client">
+                Add client
+            </a>
+        </div>
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr class="table-bg">
+                <th scope="col">Client ID</th>
+                <th scope="col">Client Name</th>
+                <th scope="col" class="">Email ID</th>
+                <th scope="col">No. of Projects</th>
+                <th scope="col">Onboard Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of [1, 2, 3, 4, 5];">
+                <th scope="row">
+                    <a [routerLink]="['./client-details']">C0001{{x}}</a>
+                </th>
+                <td>SMRT</td>
+                <td class="">support smrt.co</td>
+                <td>02</td>
+                <td>12/07/2023</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<router-outlet></router-outlet>
