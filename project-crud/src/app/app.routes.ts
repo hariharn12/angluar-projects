@@ -22,8 +22,5 @@ export const routes: Routes = [
         path: 'client-list/client-details/edit-client',
         component: EditClientComponent,
       },   
-      {
-        path: 'edit-client',
-        component: EditClientComponent,
-      }  
+    
 ];
