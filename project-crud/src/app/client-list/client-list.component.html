@@ -15,22 +15,21 @@
             <tr class="table-bg">
                 <th scope="col">Client ID</th>
                 <th scope="col">Client Name</th>
-                <th scope="col" class="">Email ID</th>
+                <th scope="col" class="d-lg-flex d-md-flex d-none">Email ID</th>
                 <th scope="col">No. of Projects</th>
                 <th scope="col">Onboard Date</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let x of [1, 2, 3, 4, 5];">
+            <tr *ngFor="let x of [1, 2, 3, 4, 5,6,7];">
                 <th scope="row">
                     <a [routerLink]="['./client-details']">C0001{{x}}</a>
                 </th>
-                <td>SMRT</td>
-                <td class="">support smrt.co</td>
+                <td>OHOH</td>
+                <td class="d-lg-flex d-md-flex d-none">support ohoh.co</td>
                 <td>02</td>
                 <td>12/07/2023</td>
             </tr>
         </tbody>
     </table>
 </div>
-<router-outlet></router-outlet>
