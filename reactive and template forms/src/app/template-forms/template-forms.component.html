@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Template Driven forms</h1>
+    <form class="students-list" (ngSubmit)="handleSubmit()" >
+        <div>
+            <input type="text" #namectrl="ngModel" [(ngModel)]="mydata.name"  name="name" placeholder="enter a name" required>
+            <ng-container *ngIf="namectrl.touched">
+                <span *ngIf="namectrl.errors?.['required']" style="color: red;">
+                    please fill this form</span>
+            </ng-container>
+        </div>
+        <!-- email -->
+        <div>
+            <input type="email" #emailctrl="ngModel" [(ngModel)]="mydata.email" name="email" placeholder="enter a email" required >
+            <ng-container *ngIf="emailctrl.touched">
+                <span *ngIf="emailctrl.errors?.['required']" style="color: red;">
+                    please fill this email</span>
+                    <span *ngIf="emailctrl.errors?.['email']" style="color: red;">
+                        Invalid email</span>
+            </ng-container>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="enter a password">
+        </div>
+        <div>
+            <input type="date" name="dob" placeholder="enter a date">
+        </div>
+        <div class="address">
+            <input type="text" name="address" placeholder="enter a address">
+            <button type="button" >add</button>
+            <button type="button">delete</button>
+
+        </div>
+        
+        <div>
+            <button>submit</button>
+        </div>
+
+    </form>
+    <div style="text-align: center;">
+      {{mydata.name|json}}
+    </div>
+</body>
+</html>

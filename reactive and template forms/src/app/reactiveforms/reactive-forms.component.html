@@ -31,7 +31,8 @@
         </div>
         <!-- password -->
         <div>
-            <input formControlName="password" name="password" type="password" placeholder="*********">
+            <input formControlName="password" name="password" [type]="forms.controls.passwordvisbile.value ==='show' ?'text':'password'"
+                placeholder="*********">
             <ng-container *ngIf="forms.controls.password.touched">
                 <span *ngIf="forms.controls.password.errors?.['required']" style="color: red;">
                     please fill this password</span>
@@ -43,9 +44,22 @@
                     password should be alphabet</span>
             </ng-container>
         </div>
+        <!-- show and hide password -->
+        <div>
+            <label class="label">
+                <input type="radio" value="show" formControlName="passwordvisbile">
+                show password
+            </label>
+            <label class="label">
+                <input type="radio" value="hide" formControlName="passwordvisbile">
+                Hide password
+            </label>
+        </div>
+        <!-- date -->
         <div>
             <input formControlName="dob" name="dob" type="date" placeholder="Enter a name">
         </div>
+        <!-- address -->
         <div formArrayName="address">
             <div class="address" *ngFor="let x of getaddress().controls; index as i">
                 <input formControlName="address" [formControlName]="i" name="address" type="text"
@@ -54,14 +68,23 @@
                 <button type="button" (click)="removebtn(i)">delete</button>
             </div>
         </div>
-
         <div>
             <button [disabled]="forms.invalid">submit</button>
         </div>
     </form>
     <div style="text-align: center;">
+        {{forms.controls.passwordvisbile.value| json}}
+    </div>
+    <!-- <div style="text-align: center;">
         {{forms.controls.password.errors| json}}
     </div>
+    <div style="text-align: center;">
+        {{forms.controls.name.errors| json}}
+    </div>
+    <div style="text-align: center;">
+        {{forms.controls.email.errors| json}}
+    </div> -->
 </body>
 
 </html>
+
