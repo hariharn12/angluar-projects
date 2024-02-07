@@ -15,14 +15,14 @@ mydata={
   email:'',
   password:'',
   dob:'',
-  address:['']
+  address:[{doorno:''}]
 }
 
 add(){
-this.mydata.address.push('')
+this.mydata.address.push({doorno:''})
 }
 remove(index:any){
-  this.mydata.address.splice(index)
+  this.mydata.address.splice(index, 1)
 }
 
   handleSubmit(){
