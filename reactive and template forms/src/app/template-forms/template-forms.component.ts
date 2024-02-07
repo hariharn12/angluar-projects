@@ -15,9 +15,15 @@ mydata={
   email:'',
   password:'',
   dob:'',
-  address:''
+  address:['']
 }
 
+add(){
+this.mydata.address.push('')
+}
+remove(index:any){
+  this.mydata.address.splice(index)
+}
 
   handleSubmit(){
 

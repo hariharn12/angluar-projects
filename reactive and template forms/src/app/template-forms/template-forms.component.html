@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1 style="text-align: center;">Template Driven forms</h1>
-    <form class="students-list" (ngSubmit)="handleSubmit()" >
+    <form class="students-list" (ngSubmit)="handleSubmit()">
         <div>
-            <input type="text" #namectrl="ngModel" [(ngModel)]="mydata.name"  name="name" placeholder="enter a name" required>
+            <input type="text" #namectrl="ngModel" [(ngModel)]="mydata.name" name="name" placeholder="enter a name"
+                required>
             <ng-container *ngIf="namectrl.touched">
                 <span *ngIf="namectrl.errors?.['required']" style="color: red;">
                     please fill this form</span>
@@ -17,34 +20,42 @@
         </div>
         <!-- email -->
         <div>
-            <input type="email" #emailctrl="ngModel" [(ngModel)]="mydata.email" name="email" placeholder="enter a email" required >
+            <input type="email" #emailctrl="ngModel" [(ngModel)]="mydata.email" name="email" placeholder="enter a email"
+                required>
             <ng-container *ngIf="emailctrl.touched">
                 <span *ngIf="emailctrl.errors?.['required']" style="color: red;">
                     please fill this email</span>
-                    <span *ngIf="emailctrl.errors?.['email']" style="color: red;">
-                        Invalid email</span>
+                <span *ngIf="emailctrl.errors?.['email']" style="color: red;">
+                    Invalid email</span>
             </ng-container>
         </div>
         <div>
-            <input type="password" name="password" placeholder="enter a password">
+            <input type="password" name="password" placeholder="enter a password" #passwordctrl="ngModel" [(ngModel)]="mydata.password" required maxlength="6">
+            <ng-container *ngIf="passwordctrl.touched">
+                <span *ngIf="passwordctrl.errors?.['required']" style="color: red;">
+                    please fill this password</span>
+                <span *ngIf="passwordctrl.errors?.['maxlength']" style="color: red;">
+                    max length should be 5</span>
+            </ng-container>
         </div>
         <div>
             <input type="date" name="dob" placeholder="enter a date">
         </div>
-        <div class="address">
-            <input type="text" name="address" placeholder="enter a address">
-            <button type="button" >add</button>
-            <button type="button">delete</button>
+        <div class="address"*ngFor="let x of mydata.address index as i">
+            <input type="text" [(ngModel)]="mydata.address[i] " name="address" placeholder="enter a address">
+            <button type="button" (click)="add()">add</button>
+            <button type="button" (click)="remove(i)">delete</button>
 
         </div>
-        
+
         <div>
             <button>submit</button>
-        </div>
+        </div> 
 
     </form>
     <div style="text-align: center;">
-      {{mydata.name|json}}
+        {{mydata.name|json}}
     </div>
 </body>
+
 </html>
