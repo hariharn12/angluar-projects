@@ -2,20 +2,66 @@
 <form class="students-list" [formGroup]="forms" (ngSubmit)="handleSubmit()">
     <div>
         <input type="text" name="name" formControlName="name" placeholder="enter a name">
+        <ng-container *ngIf="(this.forms.controls['name'].touched )">
+            <span *ngIf="(this.forms.controls['name'].errors?.['required'])" style="color: red;">
+                please fill this form</span>
+        </ng-container>
     </div>
     <div>
         <input type="email" name="email" formControlName="email" placeholder="enter a email">
+        <ng-container *ngIf="(this.forms.controls['email'].touched )">
+            <span *ngIf="(this.forms.controls['email'].errors?.['required'])" style="color: red;">
+                please fill this email</span>
+
+            <span *ngIf="(this.forms.controls['email'].errors?.['email'])" style="color: red;">
+                Invalid email</span>
+        </ng-container>
+
     </div>
     <div>
         <input type="password" name="password" formControlName="password" placeholder="enter a password">
+        <ng-container *ngIf="(this.forms.controls['password'].touched)">
+            <span *ngIf="(this.forms.controls['password'].errors?.['required'])" style="color: red;">
+                please fill this password</span>
+
+            <span *ngIf="(this.forms.controls['password'].errors?.['minlength'])" style="color: red;">
+                password should be {{(this.forms.controls['password'].errors?.['minlength']).requiredLength}} character</span>
+
+            <span *ngIf="(this.forms.controls['password'].errors?.['pattern'])" style="color: red;">
+                password should be alphabet</span>
+        </ng-container>
+    </div>
+    <div>
+        <label class="label">
+            <input type="radio" value="show" formControlName="passwordvisbile">
+            show password
+        </label>
+        <label class="label">
+            <input type="radio" value="hide" formControlName="passwordvisbile">
+            Hide password
+        </label>
     </div>
     <div>
         <input type="date" name="dob" formControlName="dob" placeholder="Enter a dob">
     </div>
-    <div>
-        <input type="text" name="address" formArrayName="address" placeholder="Enter a address">
+    <div class="address">
+        <input type="text" name="address" formControlName="address" placeholder="enter a address">
+        <button type="button">add</button>
+        <button type="button">delete</button>
     </div>
+    <!-- <div formArrayName="address">
+        <div class="address" *ngFor="let x of getaddress().controls; index as i">
+            <input formControlName="address" [formControlName]="i" name="address" type="text"
+                placeholder="Enter a address">
+            <button type="button" (click)="addbutton()">add</button>
+            <button type="button" (click)="removebtn(i)">delete</button>
+        </div>
+    </div> -->
     <div>
         <button>submit</button>
     </div>
 </form>
+
+  
+
+  

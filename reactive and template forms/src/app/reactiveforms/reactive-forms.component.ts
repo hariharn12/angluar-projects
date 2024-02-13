@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -17,7 +18,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './reactive-forms.component.css',
 })
 export class ReactiveFormsComponent {
-  // showpasword = false;
+  showpasword = false;
   forms = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,6 +31,9 @@ export class ReactiveFormsComponent {
     passwordvisbile: new FormControl(''),
     address: new FormArray([new FormControl('address1')]),
   });
+
+
+
   getaddress() {
     return this.forms.get('address') as FormArray;
   }
@@ -49,10 +53,10 @@ export class ReactiveFormsComponent {
     }
   }
 
-  // constructor() {
-  //   this.forms.controls.passwordvisbile.valueChanges.subscribe((value) => {
-  //     console.log(value);
-  //     this.showpasword = value === 'show';
-  //   });
-  // }
+  constructor() {
+    this.forms.controls.passwordvisbile.valueChanges.subscribe((value) => {
+      console.log(value);
+      this.showpasword = value === 'show';
+    });
+  }
 }
